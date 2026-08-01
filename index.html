@@ -732,56 +732,109 @@ nav{
   flex-wrap:wrap;
 }
 
-/* ============================================================
-   FORMACION
-   ============================================================ */
-.education-list{
-  display:grid;
-  gap:1px;
-  background:var(--linea);
-  border:1px solid var(--linea);
-  border-radius:var(--radio);
-  overflow:hidden;
-}
-.education-item{
-  background:var(--blanco-roto);
-  padding:28px 32px;
-  display:grid;
-  grid-template-columns:140px 1fr auto;
-  gap:24px;
-  align-items:center;
-  transition:background .3s var(--ease);
-}
-.education-item:hover{background:var(--crema-alt);}
-.education-year{
-  font-family:var(--mono);
-  font-size:13.5px;
-  color:var(--terracota);
-}
-.education-item h4{
-  font-size:17px;
-  font-weight:500;
-}
-.education-item p{
-  font-size:14px;
-  color:var(--topo);
-  margin-top:4px;
-}
-.education-tag{
-  font-family:var(--mono);
-  font-size:11px;
-  color:var(--topo-suave);
-  text-transform:uppercase;
-  border:1px solid var(--linea);
-  padding:6px 12px;
-  border-radius:999px;
-  white-space:nowrap;
-}
+<!-- ============================================================
+     FORMACIÓN
+     ============================================================ -->
+<section class="section identification" id="formacion">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Formación</div>
+      <h2>Base académica.</h2>
+    </div>
 
-@media (max-width:700px){
-  .education-item{grid-template-columns:1fr; gap:6px;}
-  .education-tag{justify-self:start; margin-top:8px;}
-}
+    <div class="education-list reveal">
+      <div class="education-item">
+        <div class="education-year">2022 - Actualidad</div>
+        <div>
+          <h4>Licenciatura en Economía</h4>
+          <p>Universidad Nacional de Tucumán (FACE-UNT) - Alumno regular avanzado</p>
+        </div>
+        <div class="education-tag">Grado</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">Mayo - Junio 2025</div>
+        <div>
+          <h4>Modelo de la Unión Europea - Tucumán</h4>
+          <p>Simulación de negociaciones internacionales y política pública</p>
+        </div>
+        <div class="education-tag">Formación complementaria</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">2024</div>
+        <div>
+          <h4>Redacción Académica con IA generativa</h4>
+          <p>Asociado con Universidad Nacional de Tucumán</p>
+        </div>
+        <div class="education-tag">Curso</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">En curso</div>
+        <div>
+          <h4>Data Visualization and Building Dashboards with Excel and Cognos</h4>
+          <p>Asociado con edX</p>
+        </div>
+        <div class="education-tag">En curso</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">2025</div>
+        <div>
+          <h4>Diagnóstico Macroeconómico</h4>
+          <p>Asociado con edX</p>
+        </div>
+        <div class="education-tag">Curso</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">2024</div>
+        <div>
+          <h4>Fundamentos de IA - ChatGPT</h4>
+          <p>Asociado con Santander | Open Academy</p>
+        </div>
+        <div class="education-tag">Curso</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">2026</div>
+        <div>
+          <h4>Introducción a las habilidades blandas</h4>
+          <p>Asociado con Ministerio de Economía | Capacitar</p>
+        </div>
+        <div class="education-tag">Curso</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">2026</div>
+        <div>
+          <h4>LaTeX para estudiantes, ingenieros y científicos</h4>
+          <p>Asociado con edX</p>
+        </div>
+        <div class="education-tag">Curso</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">2026</div>
+        <div>
+          <h4>POWER BI</h4>
+          <p>Asociado con EmpleoTecnia</p>
+        </div>
+        <div class="education-tag">Curso</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">2024</div>
+        <div>
+          <h4>Proyección de la deuda pública: dinámica de la deuda</h4>
+          <p>Asociado con edX</p>
+        </div>
+        <div class="education-tag">Curso</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 /* ============================================================
    COMENTARIOS
