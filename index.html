@@ -730,111 +730,73 @@ nav{
   display:flex;
   gap:14px;
   flex-wrap:wrap;
-} 
+}
 
-<!-- ============================================================
-     FORMACIÓN
-     ============================================================ -->
-<section class="section identification" id="formacion">
-  <div class="recipiente">
-    <div class="revelacion del encabezado de seccion">
-      <div class="ceja">Formación</div>
-      <h2>Base académica.</h2>
-    </div>
+/* ============================================================
+   FORMACIÓN (lista de educación)
+   ============================================================ */
+.edu-list{
+  max-width:760px;
+  margin-top:10px;
+  border-top:1px solid var(--linea);
+}
+.edu-item{
+  display:grid;
+  grid-template-columns:130px 1fr auto;
+  gap:24px;
+  align-items:center;
+  padding:24px 0;
+  border-bottom:1px solid var(--linea);
+  transition:padding-left .35s var(--ease), background .35s var(--ease);
+}
+.edu-item:hover{
+  padding-left:10px;
+  background:linear-gradient(90deg, var(--crema-alt), transparent 60%);
+}
+.edu-year{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--topo-suave);
+  letter-spacing:.01em;
+}
+.edu-item h4{
+  font-family:var(--serif);
+  font-size:18.5px;
+  font-weight:500;
+  line-height:1.3;
+  margin-bottom:5px;
+}
+.edu-item p{
+  color:var(--topo);
+  font-size:14px;
+}
+.edu-tag{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  padding:6px 13px;
+  border-radius:999px;
+  background:var(--crema-alt);
+  color:var(--terracota);
+  border:1px solid var(--linea);
+  white-space:nowrap;
+  justify-self:end;
+}
+.edu-tag.en-curso{
+  background:var(--terracota);
+  color:var(--blanco-roto);
+  border-color:var(--terracota);
+}
 
-    <div class="revelar lista de educacion">
-      <div class="elemento educativo">
-        <div class="ano educativo">2022 - Actualidad</div>
-        <div>
-          <h4>Licenciatura en Economía</h4>
-          <p>Universidad Nacional de Tucumán (FACE-UNT) - Alumno regular avanzado</p>
-        </div>
-        <div class="etiqueta de educacion">Grado</div>
-      </div>
-
-      <div class="elemento educativo">
-        <div class="ano educativo">Mayo - Junio 2025</div>
-        <div>
-          <h4>Modelo de la Unión Europea - Tucumán</h4>
-          <p>Simulación de negociaciones internacionales y política pública</p>
-        </div>
-        <div class="etiqueta de educacion">Formación complementaria</div>
-      </div>
-
-      <div class="elemento educativo">
-        <div class="ano educativo">2024</div>
-        <div>
-          <h4>Redacción Académica con IA generativa</h4>
-          <p>Asociado con Universidad Nacional de Tucumán</p>
-        </div>
-        <div class="etiqueta de educacion">Curso</div>
-      </div>
-
-      <div class="elemento educativo">
-        <div class="ano educativo">En curso</div>
-        <div>
-          <h4>Data Visualization and Building Dashboards with Excel and Cognos</h4>
-          <p>Asociado con edX</p>
-        </div>
-        <div class="etiqueta de educacion">En curso</div>
-      </div>
-
-      <div class="elemento educativo">
-        <div class="ano educativo">2025</div>
-        <div>
-          <h4>Diagnóstico Macroeconómico</h4>
-          <p>Asociado con edX</p>
-        </div>
-        <div class="etiqueta de educacion">Curso</div>
-      </div>
-
-      <div class="elemento educativo">
-        <div class="ano educativo">2024</div>
-        <div>
-          <h4>Fundamentos de IA - ChatGPT</h4>
-          <p>Asociado con Santander | Open Academy</p>
-        </div>
-        <div class="etiqueta de educacion">Curso</div>
-      </div>
-
-      <div class="elemento educativo">
-        <div class="ano educativo">2026</div>
-        <div>
-          <h4>Introducción a las habilidades blandas</h4>
-          <p>Asociado con Ministerio de Economía | Capacitar</p>
-        </div>
-        <div class="etiqueta de educacion">Curso</div>
-      </div>
-
-      <div class="elemento educativo">
-        <div class="ano educativo">2026</div>
-        <div>
-          <h4>LaTeX para estudiantes, ingenieros y científicos</h4>
-          <p>Asociado con edX</p>
-        </div>
-        <div class="etiqueta de educacion">Curso</div>
-      </div>
-
-      <div class="elemento educativo">
-        <div class="ano educativo">2026</div>
-        <div>
-          <h4>POWER BI</h4>
-          <p>Asociado con EmpleoTecnia</p>
-        </div>
-        <div class="etiqueta de educacion">Curso</div>
-      </div>
-
-      <div class="elemento educativo">
-        <div class="ano educativo">2026</div>
-        <div>
-          <h4>Proyección de la deuda pública: dinámica de la deuda</h4>
-          <p>Asociado con edX</p>
-        </div>
-        <div class="etiqueta de educacion">Curso</div>
-      </div>
-    </div>
-  </div>
-</section> 
+@media (max-width:640px){
+  .edu-item{
+    grid-template-columns:1fr;
+    gap:8px;
+    padding:20px 0;
+  }
+  .edu-tag{justify-self:start; margin-top:2px;}
+}
 
 /* ============================================================
    COMENTARIOS
@@ -1345,102 +1307,103 @@ footer{
      FORMACIÓN
      ============================================================ -->
 
-<section class="sección identificación" id="formación">
-  <div class="recipiente">
-    <div class="revelación del encabezado de sección">
-      <div class="ceja">Formación</div>
+<section class="section" id="formacion">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Formación</div>
       <h2>Base académica.</h2>
+      <p>Formación de grado, cursos complementarios y certificaciones en curso.</p>
     </div>
 
-    <div class="revelar lista de educación">
-      <div class="elemento educativo">
-        <div class="año educativo">2022 - Actualidad</div>
+    <div class="edu-list reveal">
+      <div class="edu-item">
+        <div class="edu-year">2022 - Actualidad</div>
         <div>
           <h4>Licenciatura en Economía</h4>
           <p>Universidad Nacional de Tucumán (FACE-UNT) - Alumno regular avanzado</p>
         </div>
-        <div class="etiqueta de educación">Grado</div>
+        <div class="edu-tag">Grado</div>
       </div>
 
-      <div class="elemento educativo">
-        <div class="año educativo">Mayo - Junio 2025</div>
+      <div class="edu-item">
+        <div class="edu-year">Mayo - Junio 2025</div>
         <div>
           <h4>Modelo de la Unión Europea - Tucumán</h4>
           <p>Simulación de negociaciones internacionales y política pública</p>
         </div>
-        <div class="etiqueta de educación">Formación complementaria</div>
+        <div class="edu-tag">Formación complementaria</div>
       </div>
 
-      <div class="elemento educativo">
-        <div class="año educativo">2024</div>
+      <div class="edu-item">
+        <div class="edu-year">2024</div>
         <div>
           <h4>Redacción Académica con IA generativa</h4>
           <p>Asociado con Universidad Nacional de Tucumán</p>
         </div>
-        <div class="etiqueta de educación">Curso</div>
+        <div class="edu-tag">Curso</div>
       </div>
 
-      <div class="elemento educativo">
-        <div class="año educativo">En curso</div>
+      <div class="edu-item">
+        <div class="edu-year">En curso</div>
         <div>
           <h4>Visualización de datos y creación de paneles de control con Excel y Cognos</h4>
           <p>Asociado con edX</p>
         </div>
-        <div class="etiqueta de educación">En curso</div>
+        <div class="edu-tag en-curso">En curso</div>
       </div>
 
-      <div class="elemento educativo">
-        <div class="año educativo">2025</div>
+      <div class="edu-item">
+        <div class="edu-year">2025</div>
         <div>
           <h4>Diagnóstico Macroeconómico</h4>
           <p>Asociado con edX</p>
         </div>
-        <div class="etiqueta de educación">Curso</div>
+        <div class="edu-tag">Curso</div>
       </div>
 
-      <div class="elemento educativo">
-        <div class="año educativo">2024</div>
+      <div class="edu-item">
+        <div class="edu-year">2024</div>
         <div>
           <h4>Fundamentos de IA - ChatGPT</h4>
           <p>Asociado con Santander | Open Academy</p>
         </div>
-        <div class="etiqueta de educación">Curso</div>
+        <div class="edu-tag">Curso</div>
       </div>
 
-      <div class="elemento educativo">
-        <div class="año educativo">2026</div>
+      <div class="edu-item">
+        <div class="edu-year">2026</div>
         <div>
           <h4>Introducción a las habilidades blandas</h4>
           <p>Asociado con Ministerio de Economía | Capacitar</p>
         </div>
-        <div class="etiqueta de educación">Curso</div>
+        <div class="edu-tag">Curso</div>
       </div>
 
-      <div class="elemento educativo">
-        <div class="año educativo">2026</div>
+      <div class="edu-item">
+        <div class="edu-year">2026</div>
         <div>
           <h4>LaTeX para estudiantes, ingenieros y científicos</h4>
           <p>Asociado con edX</p>
         </div>
-        <div class="etiqueta de educación">Curso</div>
+        <div class="edu-tag">Curso</div>
       </div>
 
-      <div class="elemento educativo">
-        <div class="año educativo">2026</div>
+      <div class="edu-item">
+        <div class="edu-year">2026</div>
         <div>
           <h4>POWER BI</h4>
           <p>Asociado con EmpleoTecnia</p>
         </div>
-        <div class="etiqueta de educación">Curso</div>
+        <div class="edu-tag">Curso</div>
       </div>
 
-      <div class="elemento educativo">
-        <div class="año educativo">2024</div>
+      <div class="edu-item">
+        <div class="edu-year">2024</div>
         <div>
           <h4>Proyección de la deuda pública: dinámica de la deuda</h4>
           <p>Asociado con edX</p>
         </div>
-        <div class="etiqueta de educación">Curso</div>
+        <div class="edu-tag">Curso</div>
       </div>
     </div>
   </div>
@@ -1641,8 +1604,4 @@ footer{
 </script>
 
 </body>
-</html>  
-
-</style>
-</head>
-<body>                       
+</html>
