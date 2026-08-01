@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miguel Lautaro Luna — Economía &amp; Análisis de Datos</title>
+<meta name="description" content="Portfolio de Miguel Lautaro Luna, estudiante avanzado de Licenciatura en Economía (UNT), investigación aplicada para el Banco Mundial y el BID.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --crema:        #FAF6EF;
+  --crema-alt:     #F3ECDF;
+  --arena:        #E9DFCC;
+  --topo:         #6E6659;
+  --topo-suave:   #948C7D;
+  --tinta:        #2E2A24;
+  --terracota:    #B36A48;
+  --terracota-suave: #C9846373;
+  --linea:        #DDD2BC;
+  --blanco-roto:  #FFFDFA;
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:  'IBM Plex Mono', 'Courier New', monospace;
+
+  --radio: 14px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --dur: .6s;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
+}
+
+body{
+  background:var(--crema);
+  color:var(--tinta);
+  font-family:var(--sans);
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+img{max-width:100%;display:block;}
+
+::selection{background:var(--terracota-suave);color:var(--tinta);}
+
+:focus-visible{
+  outline:2px solid var(--terracota);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--serif);
+  font-weight:500;
+  letter-spacing:-0.01em;
+  color:var(--tinta);
+}
+
+.container{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 32px;
+}
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--terracota);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+.eyebrow::before{
+  content:"";
+  width:26px;height:1px;
+  background:var(--terracota);
+  display:inline-block;
+}
+
+.section{
+  padding:110px 0;
+  position:relative;
+}
+.section-alt{
+  background:var(--crema-alt);
+}
+
+.section-head{
+  max-width:640px;
+  margin-bottom:64px;
+}
+.section-head h2{
+  font-size:clamp(28px,3.4vw,40px);
+  line-height:1.15;
+}
+.section-head p{
+  color:var(--topo);
+  margin-top:14px;
+  font-size:16.5px;
+  max-width:520px;
+}
+
+/* Reveal on scroll */
+.reveal{
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+header{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:200;
+  background:rgba(250,246,239,0.82);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .4s var(--ease), box-shadow .4s var(--ease);
+}
+header.scrolled{
+  border-bottom:1px solid var(--linea);
+  box-shadow:0 6px 24px -18px rgba(46,42,36,0.25);
+}
+nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px 32px;
+  max-width:1120px;
+  margin:0 auto;
+}
+.logo{
+  font-family:var(--serif);
+  font-size:19px;
+  font-weight:500;
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+}
+.logo span{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--terracota);
+  letter-spacing:.06em;
+}
+.nav-links{
+  display:flex;
+  gap:34px;
+  align-items:center;
+}
+.nav-links a{
+  font-size:14.5px;
+  color:var(--topo);
+  position:relative;
+  padding:4px 0;
+  transition:color .3s var(--ease);
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:-2px;
+  width:0; height:1px;
+  background:var(--terracota);
+  transition:width .3s var(--ease);
+}
+.nav-links a:hover,
+.nav-links a.active{
+  color:var(--tinta);
+}
+.nav-links a:hover::after,
+.nav-links a.active::after{
+  width:100%;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:11px 22px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  transition:all .35s var(--ease);
+  border:1px solid transparent;
+  white-space:nowrap;
+}
+.btn-primary{
+  background:var(--terracota);
+  color:var(--blanco-roto);
+}
+.btn-primary:hover{
+  background:#9E5B3D;
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px -10px rgba(179,106,72,.55);
+}
+.btn-ghost{
+  border-color:var(--linea);
+  color:var(--tinta);
+  background:transparent;
+}
+.btn-ghost:hover{
+  border-color:var(--terracota);
+  color:var(--terracota);
+  transform:translateY(-2px);
+}
+
+.nav-cta{display:flex; gap:12px; align-items:center;}
+
+.burger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  background:none;
+  border:none;
+  padding:6px;
+}
+.burger span{
+  width:22px;height:1.5px;
+  background:var(--tinta);
+  transition:all .3s var(--ease);
+}
+.burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+.mobile-menu{
+  display:none;
+  position:fixed;
+  top:0; right:0;
+  height:100vh;
+  width:min(78vw,320px);
+  background:var(--blanco-roto);
+  z-index:190;
+  padding:100px 32px 40px;
+  transform:translateX(100%);
+  transition:transform .45s var(--ease);
+  box-shadow:-20px 0 40px -20px rgba(0,0,0,0.15);
+}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-menu a{
+  display:block;
+  font-family:var(--serif);
+  font-size:22px;
+  padding:14px 0;
+  border-bottom:1px solid var(--linea);
+  color:var(--tinta);
+}
+.overlay{
+  position:fixed; inset:0;
+  background:rgba(46,42,36,0.35);
+  z-index:180;
+  opacity:0; pointer-events:none;
+  transition:opacity .4s var(--ease);
+}
+.overlay.open{opacity:1; pointer-events:auto;}
+
+@media (max-width: 860px){
+  .nav-links{display:none;}
+  .nav-cta .btn-ghost{display:none;}
+  .burger{display:flex;}
+  .mobile-menu{display:block;}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  padding:190px 0 120px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.2fr 0.9fr;
+  gap:60px;
+  align-items:center;
+}
+.hero-kicker{
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--terracota);
+  margin-bottom:22px;
+}
+.hero h1{
+  font-size:clamp(40px,6vw,68px);
+  line-height:1.04;
+  font-weight:500;
+}
+.hero h1 em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--terracota);
+}
+.hero-role{
+  margin-top:22px;
+  font-size:19px;
+  color:var(--topo);
+  max-width:480px;
+}
+.hero-actions{
+  margin-top:38px;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.hero-card{
+  background:var(--blanco-roto);
+  border:1px solid var(--linea);
+  border-radius:var(--radio);
+  padding:30px;
+  position:relative;
+}
+.hero-card-label{
+  font-family:var(--mono);
+  font-size:11.5px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--topo-suave);
+  margin-bottom:6px;
+}
+.hero-card-value{
+  font-family:var(--serif);
+  font-size:34px;
+  color:var(--tinta);
+}
+.sparkline{
+  margin-top:22px;
+  width:100%;
+  height:90px;
+}
+.sparkline path{
+  fill:none;
+  stroke:var(--terracota);
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-dasharray:600;
+  stroke-dashoffset:600;
+  animation:draw 2.4s var(--ease) .4s forwards;
+}
+.sparkline circle{
+  fill:var(--terracota);
+  opacity:0;
+  animation:fadein .5s ease 2.4s forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@keyframes fadein{to{opacity:1;}}
+
+.hero-divider{
+  margin-top:80px;
+}
+.trend-rule{
+  width:100%;
+  height:22px;
+  opacity:.55;
+}
+.trend-rule path{
+  fill:none;
+  stroke:var(--topo-suave);
+  stroke-width:1.2;
+  stroke-dasharray:4 6;
+}
+
+/* ============================================================
+   SOBRE MI
+   ============================================================ */
+.about-grid{
+  display:grid;
+  grid-template-columns:0.8fr 1.2fr;
+  gap:64px;
+  align-items:start;
+}
+.about-portrait{
+  aspect-ratio:4/5;
+  border-radius:var(--radio);
+  background:linear-gradient(155deg,var(--arena),var(--crema-alt));
+  border:1px solid var(--linea);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--topo-suave);
+  letter-spacing:.05em;
+  text-align:center;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+}
+.about-portrait::after{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid var(--terracota-suave);
+  border-radius:10px;
+}
+.about-text p{
+  font-size:17px;
+  color:var(--topo);
+  margin-bottom:20px;
+  max-width:560px;
+}
+.about-text strong{color:var(--tinta); font-weight:500;}
+.about-signature{
+  margin-top:36px;
+  padding-top:28px;
+  border-top:1px solid var(--linea);
+  display:flex;
+  gap:40px;
+  flex-wrap:wrap;
+}
+.about-signature div span{
+  display:block;
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--topo-suave);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:4px;
+}
+.about-signature div strong{
+  font-family:var(--serif);
+  font-size:20px;
+  font-weight:500;
+}
+
+/* ============================================================
+   METRICAS CLAVE
+   ============================================================ */
+.metrics-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--linea);
+  border:1px solid var(--linea);
+  border-radius:var(--radio);
+  overflow:hidden;
+}
+.metric-card{
+  background:var(--blanco-roto);
+  padding:38px 28px;
+  transition:background .35s var(--ease);
+}
+.metric-card:hover{
+  background:var(--crema-alt);
+}
+.metric-value{
+  font-family:var(--mono);
+  font-size:44px;
+  font-weight:500;
+  color:var(--terracota);
+  line-height:1;
+  display:flex;
+  align-items:baseline;
+  gap:4px;
+}
+.metric-value .suffix{
+  font-size:20px;
+  color:var(--topo);
+}
+.metric-label{
+  margin-top:12px;
+  font-size:14px;
+  color:var(--topo);
+}
+
+@media (max-width:760px){
+  .metrics-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+/* ============================================================
+   HERRAMIENTAS
+   ============================================================ */
+.tools-columns{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:36px;
+}
+.tools-col h4{
+  font-family:var(--mono);
+  font-size:12.5px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--topo-suave);
+  margin-bottom:18px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--linea);
+}
+.tool-pill{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:13px 4px;
+  border-bottom:1px solid var(--linea);
+  font-size:15.5px;
+  transition:padding-left .3s var(--ease), color .3s var(--ease);
+}
+.tools-col .tool-pill:last-child{border-bottom:none;}
+.tool-pill:hover{
+  padding-left:10px;
+  color:var(--terracota);
+}
+.tool-level{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--topo-suave);
+  letter-spacing:.05em;
+}
+
+@media (max-width:820px){
+  .tools-columns{grid-template-columns:1fr; gap:44px;}
+}
+
+/* ============================================================
+   TRAYECTORIA (TIMELINE)
+   ============================================================ */
+.timeline{
+  position:relative;
+  max-width:760px;
+  margin-top:10px;
+}
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:110px;
+  top:8px; bottom:8px;
+  width:1px;
+  background:var(--linea);
+}
+.timeline-item{
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:32px;
+  padding-bottom:52px;
+  position:relative;
+}
+.timeline-item:last-child{padding-bottom:0;}
+.timeline-date{
+  font-family:var(--mono);
+  font-size:13.5px;
+  color:var(--topo-suave);
+  padding-top:2px;
+  text-align:right;
+  padding-right:26px;
+}
+.timeline-item::after{
+  content:"";
+  position:absolute;
+  left:106px;
+  top:6px;
+  width:9px;height:9px;
+  border-radius:50%;
+  background:var(--crema);
+  border:2px solid var(--terracota);
+}
+.timeline-body h3{
+  font-size:20px;
+  font-weight:500;
+}
+.timeline-role{
+  font-family:var(--mono);
+  font-size:12.5px;
+  color:var(--terracota);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-top:4px;
+  margin-bottom:10px;
+}
+.timeline-body p{
+  color:var(--topo);
+  font-size:15.5px;
+  max-width:520px;
+}
+
+@media (max-width:640px){
+  .timeline::before{left:0;}
+  .timeline-item{grid-template-columns:1fr;}
+  .timeline-date{text-align:left; padding-right:0; padding-left:20px;}
+  .timeline-item::after{left:-4px;}
+  .timeline-body{padding-left:20px;}
+}
+
+/* ============================================================
+   PROYECTOS
+   ============================================================ */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+}
+.project-card{
+  background:var(--blanco-roto);
+  border:1px solid var(--linea);
+  border-radius:var(--radio);
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  transition:transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+}
+.project-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--terracota);
+  box-shadow:0 18px 34px -22px rgba(46,42,36,.35);
+}
+.project-thumb{
+  height:130px;
+  border-radius:9px;
+  background:linear-gradient(135deg,var(--arena),var(--crema-alt));
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+}
+.project-thumb svg{
+  position:absolute;
+  bottom:0; left:0; right:0;
+  width:100%; height:70%;
+  opacity:.6;
+}
+.project-thumb svg path{
+  fill:none;
+  stroke:var(--terracota);
+  stroke-width:2;
+}
+.project-tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.tag{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  padding:5px 10px;
+  border-radius:999px;
+  background:var(--crema-alt);
+  color:var(--topo);
+  border:1px solid var(--linea);
+}
+.project-card h3{
+  font-size:19px;
+  font-weight:500;
+  margin-bottom:8px;
+}
+.project-card p{
+  font-size:14.5px;
+  color:var(--topo);
+  flex-grow:1;
+  margin-bottom:18px;
+}
+.project-link{
+  font-size:13.5px;
+  font-weight:500;
+  color:var(--terracota);
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+.project-link svg{
+  width:13px;height:13px;
+  transition:transform .3s var(--ease);
+}
+.project-card:hover .project-link svg{
+  transform:translate(3px,-3px);
+}
+
+@media (max-width:900px){
+  .projects-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:640px){
+  .projects-grid{grid-template-columns:1fr;}
+}
+
+/* ============================================================
+   CURRICULUM
+   ============================================================ */
+.cv-box{
+  background:var(--blanco-roto);
+  border:1px solid var(--linea);
+  border-radius:var(--radio);
+  padding:52px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  flex-wrap:wrap;
+}
+.cv-box-text h3{
+  font-size:26px;
+  margin-bottom:10px;
+}
+.cv-box-text p{
+  color:var(--topo);
+  max-width:420px;
+  font-size:15.5px;
+}
+.cv-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+/* ============================================================
+   FORMACION
+   ============================================================ */
+.education-list{
+  display:grid;
+  gap:1px;
+  background:var(--linea);
+  border:1px solid var(--linea);
+  border-radius:var(--radio);
+  overflow:hidden;
+}
+.education-item{
+  background:var(--blanco-roto);
+  padding:28px 32px;
+  display:grid;
+  grid-template-columns:140px 1fr auto;
+  gap:24px;
+  align-items:center;
+  transition:background .3s var(--ease);
+}
+.education-item:hover{background:var(--crema-alt);}
+.education-year{
+  font-family:var(--mono);
+  font-size:13.5px;
+  color:var(--terracota);
+}
+.education-item h4{
+  font-size:17px;
+  font-weight:500;
+}
+.education-item p{
+  font-size:14px;
+  color:var(--topo);
+  margin-top:4px;
+}
+.education-tag{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--topo-suave);
+  text-transform:uppercase;
+  border:1px solid var(--linea);
+  padding:6px 12px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+
+@media (max-width:700px){
+  .education-item{grid-template-columns:1fr; gap:6px;}
+  .education-tag{justify-self:start; margin-top:8px;}
+}
+
+/* ============================================================
+   COMENTARIOS
+   ============================================================ */
+.comment-form{
+  max-width:640px;
+  display:grid;
+  gap:20px;
+}
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.form-field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.form-field label{
+  font-family:var(--mono);
+  font-size:11.5px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--topo-suave);
+}
+.form-field input,
+.form-field textarea{
+  font-family:var(--sans);
+  font-size:15px;
+  color:var(--tinta);
+  background:var(--blanco-roto);
+  border:1px solid var(--linea);
+  border-radius:10px;
+  padding:13px 16px;
+  transition:border-color .3s var(--ease), box-shadow .3s var(--ease);
+  resize:vertical;
+}
+.form-field input:focus,
+.form-field textarea:focus{
+  outline:none;
+  border-color:var(--terracota);
+  box-shadow:0 0 0 3px var(--terracota-suave);
+}
+.form-note{
+  font-size:13px;
+  color:var(--topo-suave);
+}
+.comment-submitted{
+  display:none;
+  font-size:14.5px;
+  color:var(--terracota);
+  font-family:var(--mono);
+}
+.comment-submitted.visible{display:block;}
+
+@media (max-width:600px){
+  .form-row{grid-template-columns:1fr;}
+}
+
+/* ============================================================
+   FOOTER / CONTACTO
+   ============================================================ */
+footer{
+  background:var(--tinta);
+  color:var(--crema);
+  padding:80px 0 40px;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:50px;
+  padding-bottom:50px;
+  border-bottom:1px solid rgba(250,246,239,0.12);
+}
+.footer-brand h3{
+  color:var(--crema);
+  font-size:26px;
+  margin-bottom:14px;
+}
+.footer-brand p{
+  color:#B8AF9F;
+  font-size:14.5px;
+  max-width:340px;
+}
+.footer-col h5{
+  font-family:var(--mono);
+  font-size:11.5px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:#B8AF9F;
+  margin-bottom:16px;
+}
+.footer-col a{
+  display:block;
+  font-size:14.5px;
+  color:#D9D2C4;
+  margin-bottom:12px;
+  transition:color .3s var(--ease);
+}
+.footer-col a:hover{color:var(--terracota);}
+.footer-bottom{
+  padding-top:30px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  font-size:13px;
+  color:#8A8171;
+}
+
+@media (max-width:760px){
+  .footer-grid{grid-template-columns:1fr;}
+  .hero-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;}
+  .metrics-grid{grid-template-columns:1fr 1fr;}
+}
+
+@media (max-width:900px){
+  .projects-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header id="siteHeader">
+  <nav>
+    <a href="#inicio" class="logo">Miguel Luna <span>ECON · UNT</span></a>
+
+    <ul class="nav-links">
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#metricas">Métricas</a></li>
+      <li><a href="#herramientas">Herramientas</a></li>
+      <li><a href="#trayectoria">Trayectoria</a></li>
+      <li><a href="#proyectos">Investigación</a></li>
+      <li><a href="#formacion">Formación</a></li>
+      <li><a href="#comentarios">Comentarios</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="#contacto" class="btn btn-ghost">Contacto</a>
+      <a href="https://drive.google.com/uc?export=download&id=1OjhR_Rky9fZdO607DtdAbdaz-g3hOW3c" target="_blank" rel="noopener" class="btn btn-primary">Descargar CV</a>
+    </div>
+
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="overlay" id="overlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre-mi">Sobre mí</a>
+  <a href="#metricas">Métricas</a>
+  <a href="#herramientas">Herramientas</a>
+  <a href="#trayectoria">Trayectoria</a>
+  <a href="#proyectos">Investigación</a>
+  <a href="#formacion">Formación</a>
+  <a href="#comentarios">Comentarios</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
+<!-- ============================================================
+     HERO / PRESENTACIÓN
+     ============================================================ -->
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-kicker">Economía · Análisis de datos · Tucumán, Argentina</div>
+        <h1>Hola, soy <br><em>Miguel Lautaro Luna</em></h1>
+        <p class="hero-role">Estudiante avanzado de la Licenciatura en Economía (UNT), con experiencia en investigación aplicada para el Banco Mundial y el BID a través del LAPDE (FACE-UNT). Transformo datos socioeconómicos complejos en evidencia para la toma de decisiones.</p>
+        <div class="hero-actions">
+          <a href="#proyectos" class="btn btn-primary">Ver investigación</a>
+          <a href="https://drive.google.com/uc?export=download&id=1OjhR_Rky9fZdO607DtdAbdaz-g3hOW3c" target="_blank" rel="noopener" class="btn btn-ghost">Descargar CV ↓</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <div class="hero-card-label">Tesis de grado en desarrollo</div>
+        <div class="hero-card-value">2016–2023</div>
+        <svg class="sparkline" viewBox="0 0 300 90" preserveAspectRatio="none">
+          <path d="M0,70 C 40,60 60,20 100,35 S 160,60 200,25 S 260,10 300,15" />
+          <circle cx="300" cy="15" r="4"></circle>
+        </svg>
+      </div>
+    </div>
+
+    <div class="hero-divider">
+      <svg class="trend-rule" viewBox="0 0 1000 20" preserveAspectRatio="none">
+        <path d="M0,10 L1000,10"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SOBRE MÍ
+     ============================================================ -->
+<section class="section" id="sobre-mi">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Sobre mí</div>
+      <h2>Datos con contexto, análisis con propósito.</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-portrait reveal">
+        <img src="https://drive.google.com/thumbnail?id=1Z6EZTDQCS2cuxVhXj2qAo8ED4Jq3kjTn&sz=w1000" alt="Foto de Miguel Lautaro Luna" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+      </div>
+
+      <div class="about-text reveal">
+        <p>Sólido dominio en procesamiento analítico, econometría y gestión de bases de datos socioeconómicas. Cuento con experiencia contrastada en investigación aplicada de alto nivel para el Banco Mundial y el BID a través del LAPDE (FACE-UNT).</p>
+        <p>Perfil altamente analítico y orientado a resultados, con destreza avanzada en <strong>Eviews, Stata, R y Power BI</strong> para transformar datos complejos en evidencia estratégica para la toma de decisiones. Me destaco por mi rigor metodológico, capacidad de adaptación tecnológica y un fuerte compromiso con la excelencia institucional.</p>
+
+        <div class="about-signature">
+          <div>
+            <span>Situación académica</span>
+            <strong>Alumno avanzado</strong>
+          </div>
+          <div>
+            <span>Universidad</span>
+            <strong>UNT · FACE</strong>
+          </div>
+          <div>
+            <span>Disponibilidad</span>
+            <strong>Inmediata</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MÉTRICAS CLAVE
+     ============================================================ -->
+<section class="section section-alt" id="metricas">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Métricas clave</div>
+      <h2>Resultados en cifras.</h2>
+      <p>Un resumen rápido de mi trayectoria profesional y académica, en números.</p>
+    </div>
+
+    <div class="metrics-grid reveal">
+      <div class="metric-card">
+        <div class="metric-value" data-count="0" data-target="2"><span class="suffix"></span></div>
+        <div class="metric-label">Proyectos de investigación aplicada (BID · Banco Mundial)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" data-count="0" data-target="6"><span class="suffix"></span></div>
+        <div class="metric-label">Provincias analizadas en la tesis (NOA y Sur)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" data-count="0" data-target="4"><span class="suffix"></span></div>
+        <div class="metric-label">Software estadístico dominado</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" data-count="0" data-target="100"><span class="suffix">%</span></div>
+        <div class="metric-label">Disponibilidad horaria</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HERRAMIENTAS
+     ============================================================ -->
+<section class="section" id="herramientas">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Herramientas</div>
+      <h2>Con qué trabajo.</h2>
+      <p>Lenguajes, software y métodos que utilizo en mi día a día como analista.</p>
+    </div>
+
+    <div class="tools-columns reveal">
+      <div class="tools-col">
+        <h4>Software estadístico &amp; econométrico</h4>
+        <div class="tool-pill"><span>EViews</span><span class="tool-level">Avanzado</span></div>
+        <div class="tool-pill"><span>Stata</span><span class="tool-level">Avanzado</span></div>
+        <div class="tool-pill"><span>R</span><span class="tool-level">Avanzado</span></div>
+        <div class="tool-pill"><span>Series temporales</span><span class="tool-level">Avanzado</span></div>
+      </div>
+
+      <div class="tools-col">
+        <h4>Análisis &amp; visualización de datos</h4>
+        <div class="tool-pill"><span>Power BI</span><span class="tool-level">Intermedio-Avanzado</span></div>
+        <div class="tool-pill"><span>Excel</span><span class="tool-level">Intermedio-Avanzado</span></div>
+        <div class="tool-pill"><span>Microsoft Office</span><span class="tool-level">Intermedio-Avanzado</span></div>
+        <div class="tool-pill"><span>Cognos Dashboards</span><span class="tool-level">En curso</span></div>
+      </div>
+
+      <div class="tools-col">
+        <h4>Otras herramientas</h4>
+        <div class="tool-pill"><span>LaTeX</span><span class="tool-level">Avanzado</span></div>
+        <div class="tool-pill"><span>Bases de datos socioeconómicas</span><span class="tool-level">Avanzado</span></div>
+        <div class="tool-pill"><span>Redacción técnica con IA</span><span class="tool-level">Intermedio</span></div>
+        <div class="tool-pill"><span>Inglés</span><span class="tool-level">Intermedio</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TRAYECTORIA
+     ============================================================ -->
+<section class="section section-alt" id="trayectoria">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Trayectoria</div>
+      <h2>Mi camino profesional.</h2>
+      <p>Un resumen cronológico de mi experiencia laboral y hitos relevantes.</p>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-date">Abr 2026</div>
+        <div class="timeline-body">
+          <h3>Asistente en procesamiento de datos — Proyecto BID</h3>
+          <div class="timeline-role">LAPDE (FACE-UNT) · Tucumán, Argentina</div>
+          <p>Carga, codificación y digitalización de encuestas socioeconómicas en soporte papel, construyendo bases de datos en Excel a partir de criterios de codificación predefinidos. Revisión de consistencia y preparación de la información para su posterior análisis.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Oct 2025</div>
+        <div class="timeline-body">
+          <h3>Asistente en Proyecto de ciencias del comportamiento</h3>
+          <div class="timeline-role">LAPDE · Banco Mundial · BIT · INECO · Tucumán, Argentina</div>
+          <p>Relevamiento de información en campo mediante observación sistematizada y registro de conductas. Digitalización y sistematización de los datos recolectados para su posterior análisis.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">May–Jun 2025</div>
+        <div class="timeline-body">
+          <h3>Modelo de la Unión Europea — Tucumán</h3>
+          <div class="timeline-role">Formación complementaria</div>
+          <p>Simulación de negociaciones internacionales y elaboración de propuestas de política pública mediante indicadores de evaluación.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2022 — hoy</div>
+        <div class="timeline-body">
+          <h3>Licenciatura en Economía</h3>
+          <div class="timeline-role">Universidad Nacional de Tucumán (FACE-UNT)</div>
+          <p>Alumno regular avanzado, con trayectoria académica sostenida e historial limpio, sin aplazos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROYECTOS
+     ============================================================ -->
+<section class="section" id="proyectos">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Investigación &amp; Proyectos</div>
+      <h2>Trabajo aplicado y formación en curso.</h2>
+      <p>Investigación de tesis, proyectos con el LAPDE (Banco Mundial y BID) y formación complementaria en análisis de datos.</p>
+    </div>
+
+    <div class="projects-grid reveal">
+
+      <div class="project-card">
+        <div class="project-thumb">
+          <svg viewBox="0 0 200 70" preserveAspectRatio="none"><path d="M0,50 C30,40 50,10 80,25 S 140,55 200,15"></path></svg>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Stata</span>
+          <span class="tag">Econometría</span>
+        </div>
+        <h3>Tesis de grado en desarrollo</h3>
+        <p>Análisis de cómo el Impuesto a los Ingresos Brutos (IIBB), los paros sindicales y los juicios laborales afectan la probabilidad de informalidad laboral asalariada. Evidencia comparada 2016–2023 para 3 provincias del NOA (Tucumán, Salta, Santiago del Estero) y 3 del Sur (Neuquén, Santa Cruz, Tierra del Fuego).</p>
+        <a href="https://docs.google.com/document/d/1VlOzShX94g-YUzRsoRyZovPJ3eCh8_Jl/edit?usp=drivesdk&ouid=106570689948751732970&rtpof=true&sd=true" target="_blank" rel="noopener" class="project-link">Seguir el avance de la tesis
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb">
+          <svg viewBox="0 0 200 70" preserveAspectRatio="none"><path d="M0,30 C40,60 60,5 100,30 S 160,10 200,45"></path></svg>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Excel</span>
+          <span class="tag">Bases de datos</span>
+        </div>
+        <h3>Asistencia técnica — Proyecto BID</h3>
+        <p>Carga, codificación y digitalización de encuestas socioeconómicas en soporte papel. Construcción de bases de datos y revisión de consistencia para el LAPDE (FACE-UNT), Tucumán.</p>
+        <a href="#" class="project-link">Más información
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb">
+          <svg viewBox="0 0 200 70" preserveAspectRatio="none"><path d="M0,55 C50,20 70,45 110,20 S 150,50 200,10"></path></svg>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Trabajo de campo</span>
+          <span class="tag">Sistematización</span>
+        </div>
+        <h3>Proyecto de ciencias del comportamiento</h3>
+        <p>Relevamiento en campo mediante observación sistematizada y registro de conductas, con digitalización y sistematización de datos para el LAPDE, Banco Mundial, BIT e INECO.</p>
+        <a href="#" class="project-link">Más información
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb">
+          <svg viewBox="0 0 200 70" preserveAspectRatio="none"><path d="M0,20 C40,10 60,55 100,40 S 160,15 200,35"></path></svg>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Políticas públicas</span>
+          <span class="tag">Negociación</span>
+        </div>
+        <h3>Modelo de la Unión Europea — Tucumán</h3>
+        <p>Simulación de negociaciones internacionales y elaboración de propuestas de política pública a partir de indicadores de evaluación. Mayo–junio 2025.</p>
+        <a href="#" class="project-link">Más información
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb">
+          <svg viewBox="0 0 200 70" preserveAspectRatio="none"><path d="M0,40 C30,60 70,10 100,35 S 170,20 200,50"></path></svg>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">Cognos</span>
+        </div>
+        <h3>Data Visualization and Building Dashboards</h3>
+        <p>Curso en curso sobre construcción de dashboards y visualización de indicadores con Excel y Cognos, a través de edX.</p>
+        <a href="#" class="project-link">Más información
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb">
+          <svg viewBox="0 0 200 70" preserveAspectRatio="none"><path d="M0,45 C50,15 60,60 110,30 S 150,10 200,40"></path></svg>
+        </div>
+        <div class="project-tags">
+          <span class="tag">LaTeX</span>
+          <span class="tag">IA generativa</span>
+        </div>
+        <h3>Redacción de Textos Académicos y Técnicos con IA</h3>
+        <p>Formación en redacción de informes técnicos institucionales asistida por IA generativa, dictada por SEDI — Instituto de Administración (FACE-UNT), 2026.</p>
+        <a href="#" class="project-link">Más información
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CURRÍCULUM
+     ============================================================ -->
+<section class="section section-alt" id="curriculum">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Currículum</div>
+      <h2>Toda mi experiencia, en un documento.</h2>
+    </div>
+
+    <div class="cv-box reveal">
+      <div class="cv-box-text">
+        <h3>¿Quieres ver mi CV completo?</h3>
+        <p>Descarga mi currículum en PDF con el detalle completo de mi formación, experiencia en investigación aplicada y habilidades técnicas.</p>
+      </div>
+      <div class="cv-actions">
+        <a href="https://drive.google.com/uc?export=download&id=1OjhR_Rky9fZdO607DtdAbdaz-g3hOW3c" target="_blank" rel="noopener" class="btn btn-primary">Descargar CV (PDF) ↓</a>
+        <a href="#contacto" class="btn btn-ghost">Solicitar referencias</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FORMACIÓN
+     ============================================================ -->
+<section class="section" id="formacion">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Formación</div>
+      <h2>Base académica.</h2>
+    </div>
+
+    <div class="education-list reveal">
+      <div class="education-item">
+        <div class="education-year">2022 — Actualidad</div>
+        <div>
+          <h4>Licenciatura en Economía</h4>
+          <p>Universidad Nacional de Tucumán (FACE-UNT) — Alumno regular avanzado</p>
+        </div>
+        <div class="education-tag">Grado</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">May — Jun 2025</div>
+        <div>
+          <h4>Modelo de la Unión Europea — Tucumán</h4>
+          <p>Simulación de negociaciones internacionales y política pública</p>
+        </div>
+        <div class="education-tag">Formación complementaria</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">2026</div>
+        <div>
+          <h4>Redacción de Textos Académicos y Técnicos con IA Generativa</h4>
+          <p>SEDI — Instituto de Administración (FACE-UNT)</p>
+        </div>
+        <div class="education-tag">Curso</div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-year">En curso</div>
+        <div>
+          <h4>Data Visualization and Building Dashboards with Excel and Cognos</h4>
+          <p>edX</p>
+        </div>
+        <div class="education-tag">En curso</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMENTARIOS
+     ============================================================ -->
+<section class="section section-alt" id="comentarios">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Comentarios</div>
+      <h2>¿Qué te pareció la página?</h2>
+      <p>Dejá tu comentario o sugerencia. Se abre tu correo con el mensaje ya cargado, listo para enviarme.</p>
+    </div>
+
+    <form class="comment-form reveal" id="commentForm">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="commentName">Nombre</label>
+          <input type="text" id="commentName" name="commentName" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-field">
+          <label for="commentEmail">Tu correo (opcional)</label>
+          <input type="email" id="commentEmail" name="commentEmail" placeholder="para poder responderte">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="commentMessage">Comentario</label>
+        <textarea id="commentMessage" name="commentMessage" rows="4" placeholder="Escribí tu comentario aquí..." required></textarea>
+      </div>
+      <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
+        <button type="submit" class="btn btn-primary">Enviar comentario</button>
+        <span class="form-note">Se enviará por correo a lautaroluna170103@gmail.com</span>
+      </div>
+      <span class="comment-submitted" id="commentSubmitted">¡Gracias! Se abrió tu cliente de correo con el mensaje listo para enviar.</span>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER / CONTACTO
+     ============================================================ -->
+<footer id="contacto">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Miguel Lautaro Luna</h3>
+        <p>Estudiante avanzado de Economía y analista de datos. Disponibilidad horaria completa e inmediata para colaboraciones y nuevos proyectos.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <a href="mailto:lautaroluna170103@gmail.com">lautaroluna170103@gmail.com</a>
+        <a href="tel:+5493813379390">+54 9 381 337-9390</a>
+        <a href="#">Tucumán, Argentina</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Enlaces</h5>
+        <a href="https://www.linkedin.com/in/miguel-lautaro-luna-959b08381?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Miguel Lautaro Luna. Todos los derechos reservados.</span>
+      <span>Diseño &amp; desarrollo propio</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Año dinámico ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Header al hacer scroll ---------- */
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---------- Menú móvil ---------- */
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('overlay');
+
+  function toggleMenu(open){
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    mobileMenu.classList.toggle('open', open);
+    overlay.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  burger.addEventListener('click', () => toggleMenu(!mobileMenu.classList.contains('open')));
+  overlay.addEventListener('click', () => toggleMenu(false));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+  /* ---------- Nav activo según sección visible ---------- */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, {rootMargin: '-45% 0px -50% 0px'});
+
+  sections.forEach(s => navObserver.observe(s));
+
+  /* ---------- Revelado al hacer scroll ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  /* ---------- Contador animado de métricas ---------- */
+  const metricEls = document.querySelectorAll('.metric-value');
+
+  function animateCount(el){
+    const target = parseFloat(el.getAttribute('data-target'));
+    const isDecimal = target % 1 !== 0;
+    const suffixEl = el.querySelector('.suffix');
+    const suffixText = suffixEl ? suffixEl.outerHTML : '';
+    const duration = 1400;
+    const start = performance.now();
+
+    function tick(now){
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = target * eased;
+      const display = isDecimal ? value.toFixed(1) : Math.round(value);
+      el.innerHTML = display + suffixText;
+      if(progress < 1){
+        requestAnimationFrame(tick);
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const metricObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        animateCount(entry.target);
+        metricObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.5});
+
+  metricEls.forEach(el => metricObserver.observe(el));
+
+  /* ---------- Formulario de comentarios (envío por correo) ---------- */
+  const commentForm = document.getElementById('commentForm');
+  const commentSubmitted = document.getElementById('commentSubmitted');
+
+  if(commentForm){
+    commentForm.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const name = document.getElementById('commentName').value.trim();
+      const email = document.getElementById('commentEmail').value.trim();
+      const message = document.getElementById('commentMessage').value.trim();
+
+      const subject = 'Comentario en el portfolio — ' + name;
+      let body = 'Nombre: ' + name + '\n';
+      if(email){ body += 'Correo de contacto: ' + email + '\n'; }
+      body += '\nComentario:\n' + message;
+
+      const mailtoLink = 'mailto:lautaroluna170103@gmail.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+
+      window.location.href = mailtoLink;
+
+      commentSubmitted.classList.add('visible');
+      commentForm.reset();
+    });
+  }
+
+})();
+</script>
+
+</body>
+</html>
